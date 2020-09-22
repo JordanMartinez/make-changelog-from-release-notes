@@ -3,6 +3,12 @@
 Uses GH API to make a `CHANGELOG.md` file based on a repo's releases and their release notes.
 
 ```bash
+# If you don't have these tools, run
+#     npm i purescript spago
+#
+# and prefix the below commands with `npx`
+
+spago install
 spago bundle-app -m Main -t ./changelog.js
 
 cd ../path-to-repo
