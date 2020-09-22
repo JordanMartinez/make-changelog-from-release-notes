@@ -11,8 +11,11 @@ Uses GH API to make a `CHANGELOG.md` file based on a repo's releases and their r
 spago install
 spago bundle-app -m Main -t ./changelog.js
 
-cd ../path-to-repo
-node ../path-to-this-repo/changelog.js -o purescript-contrib -r purescript-http-methods
+cd ../path-to-other-repo
+
+node ../path-to-this-repo/changelog.js --github-owner purescript-contrib --github-repo purescript-http-methods
+# Short args example:
+# node ../path-to-this-repo/changelog.js -o purescript-contrib -r purescript-http-methods
 ```
 
 -- Sample Output --
