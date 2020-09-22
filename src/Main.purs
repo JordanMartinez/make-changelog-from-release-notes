@@ -73,7 +73,7 @@ fetchReleases gh = do
   let
     realReleases = filter (\r -> r.draft == false) releases
     appendContent = foldl addReleaseInfo fileHeader realReleases
-  FSA.appendTextFile UTF8 "./CHANGELOG.md" appendContent
+  FSA.writeTextFile UTF8 "./CHANGELOG.md" appendContent
   where
     fileHeader :: String
     fileHeader = trimStart $
