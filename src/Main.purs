@@ -14,6 +14,7 @@ import Data.Foldable (fold, foldl)
 import Data.Maybe (Maybe(..))
 import Data.Monoid (power)
 import Data.String (Pattern(..))
+import Data.String as String
 import Data.String.CodeUnits (takeWhile, indexOf, drop, length)
 import Data.String.Common (joinWith, trim)
 import Data.String.Utils (lines)
@@ -100,12 +101,11 @@ fetchReleases gh = do
       let
         dateWithoutTimeZone = takeWhile (_ /= 'T') rec.published_at
         bodyWithFixedHeaders = fixHeaders $ trim rec.body
+        bodyContent = if String.null bodyWithFixedHeaders then "" else bodyWithFixedHeaders <> "\n\n"
       in acc <> joinWith "\n"
         [ "## [" <> rec.tag_name <> "](" <> rec.html_url <> ") - " <> dateWithoutTimeZone
         , ""
-        , bodyWithFixedHeaders
-        , ""
-        , ""
+        , bodyContent
         ]
 
     fixHeaders :: String -> String
